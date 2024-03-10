@@ -1,13 +1,12 @@
 import { Request, Response } from "express";
-import { Item } from "../models/item.js";
+import { Item } from "../models/item";
 
 export const addItem = async (req: Request, res: Response) => {
   try {
     const file = req.file;
     const data = req.body;
-    if (!file) {
-      return res.status(400).json({ message: "File is required." });
-    }
+    if (!file) return res.status(400).json({ message: "File is required." });
+
     const { filename, path } = file;
     const itemWithFile = new Item({
       ...data,

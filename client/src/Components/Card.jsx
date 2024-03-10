@@ -53,6 +53,7 @@ const Card = (props) => {
   };
 
   const prepareFormData = () => {
+    if (formFields.fileInput === null) return alert("Please upload an image");
     const formData = new FormData();
     formData.append("file", formFields.fileInput);
     formData.append("studentName", formFields.studentName);
@@ -66,20 +67,19 @@ const Card = (props) => {
 
   const handleFormSubmit = (event) => {
     event.preventDefault();
+    const formData = prepareFormData();
+    if (!formData) return setSpinner(false);
     setSpinner(true);
     setSubmitTxt("Submitting");
-    const formData = prepareFormData();
     createItem(formData)
-      .then((res) => {
+      .then(() => {
         setSpinner(false);
-        console.log(res);
         setSubmitTxt("Submitted");
         setTimeout(() => {
           window.location.href = formFields.category.toLowerCase();
         }, 2000);
       })
       .catch((err) => {
-        console.log(err);
         setSubmitTxt("Retry");
         setSpinner(false);
       });
@@ -156,6 +156,7 @@ const Card = (props) => {
                   placeholder={inputField.placeholder}
                   value={formFields[inputField.name]}
                   onChange={handleFieldChange}
+                  required
                 />
               </div>
             ))}
@@ -166,6 +167,7 @@ const Card = (props) => {
                 defaultValue=""
                 name="category"
                 onChange={handleFieldChange}
+                required
               >
                 <option value="" disabled>
                   Select an option
