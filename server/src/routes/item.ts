@@ -6,9 +6,7 @@ import { v4 as uuidv4 } from "uuid";
 const router = express.Router();
 
 const itemStorage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "./src/uploads");
-  },
+  destination: (req, file, cb) => cb(null, "./src/uploads"),
   filename: (req, file, cb) => {
     const uniqueFilename = uuidv4();
     const fileExtension = file.originalname.split(".").pop();

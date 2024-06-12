@@ -1,4 +1,5 @@
 import "../styles/Card.css";
+import webpfy from "webpfy";
 import { createItem } from "../api";
 import React, { useState } from "react";
 import upload from "../assets/gallery.png";
@@ -28,12 +29,17 @@ const Card = (props) => {
   const handleImage = (event) => {
     const file = event.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setFormFields((prevFields) => ({
-        ...prevFields,
-        fileInput: file,
-        imagePreview: imageUrl,
-      }));
+      const image = file;
+      const quality = 60;
+      webpfy({ image, quality })
+        .then((result) => {
+          setFormFields((prevFields) => ({
+            ...prevFields,
+            fileInput: result.webpBlob,
+            imagePreview: URL.createObjectURL(result.webpBlob),
+          }));
+        })
+        .catch((error) => console.error(error));
     } else
       setFormFields((prevFields) => ({
         ...prevFields,
@@ -115,7 +121,7 @@ const Card = (props) => {
 
   return (
     <div className="container-outer">
-      <div className="container-inner">
+      <div className="container-inner" style={{ width: "70%" }}>
         <div
           className="closeIcon"
           onClick={() => {
@@ -157,6 +163,7 @@ const Card = (props) => {
                   value={formFields[inputField.name]}
                   onChange={handleFieldChange}
                   required
+                  style={{ width: "100%" }}
                 />
               </div>
             ))}

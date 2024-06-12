@@ -19,19 +19,9 @@ app.use("/items", itemRoute);
 app.use("/files", fileRoute);
 app.use("/images", express.static("./src/uploads"));
 
-app.use((err: any, req: Request, res: Response, next: NextFunction) => {
-  const status: number = err.status || 500;
-  const message: string = err.message || "Something went wrong";
-  return res.status(status).json({
-    success: false,
-    status,
-    message,
-  });
-});
-
-app.use("/", (req: Request, res: Response) => {
-  res.status(200).json({ message: "API Working Fine" });
-});
+app.use("/", (req: Request, res: Response) =>
+  res.status(200).json({ message: "API Working Fine" })
+);
 
 mongoose.set("strictQuery", true);
 mongoose
@@ -45,6 +35,3 @@ mongoose
     console.error("MongoDB connection error:", error.message);
     process.exit(1);
   });
-function compression(): any {
-  throw new Error("Function not implemented.");
-}

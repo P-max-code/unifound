@@ -1,9 +1,7 @@
 version: "3"
 services:
   frontend:
-    build:
-      context: client
-      dockerfile: Dockerfile
+    image: unifound-frontend
     ports:
       - "3000:3000"
     depends_on:
@@ -12,9 +10,7 @@ services:
       - REACT_APP_API_URL=http://backend:3300
 
   backend:
-    build:
-      context: server
-      dockerfile: Dockerfile
+    image: unifound-backend
     ports:
       - "3300:3300"
     depends_on:

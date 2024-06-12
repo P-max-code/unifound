@@ -20,3 +20,5 @@ A well-built web application for the students of a University that acts as a LOS
 
 [Unifound Frontend](https://unifound.netlify.app/)
 [Unifound Backend](https://unifound.onrender.com/)
+
+NOTE: As the backend is hosted on render, it may take some time to load the first time.

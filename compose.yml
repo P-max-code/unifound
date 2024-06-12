@@ -1,26 +1,30 @@
 version: "3"
 services:
   frontend:
-    image: unifound-frontend
+    build:
+      context: ./client
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - backend
     environment:
       - REACT_APP_API_URL=http://backend:3300
+    depends_on:
+      - backend
 
   backend:
-    image: unifound-backend
+    build:
+      context: ./server
+      dockerfile: Dockerfile
     ports:
       - "3300:3300"
-    depends_on:
-      - mongo
-    volumes:
-      - uploads:/app/src/uploads
     environment:
+      - PORT=3300
       - MONGO_URL=mongodb://mongo:27017/unifound
       - ADMIN_TOKEN=admin
-      - PORT=3300
+    volumes:
+      - uploads:/app/src/uploads
+    depends_on:
+      - mongo
 
   mongo:
     image: mongo:latest

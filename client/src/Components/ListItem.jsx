@@ -14,7 +14,6 @@ const ListItems = () => {
     setSpinner(true);
     fetchItems(location)
       .then((response) => {
-        console.log(response.data);
         setItems(response.data.reverse());
         setSpinner(false);
       })

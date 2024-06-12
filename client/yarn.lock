@@ -10030,6 +10030,11 @@ webpack@^5.64.4:
     watchpack "^2.4.0"
     webpack-sources "^3.2.3"
 
+webpfy@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/webpfy/-/webpfy-1.0.9.tgz#8963e306a232d3c4979c8f02c1b090bf81be7cdd"
+  integrity sha512-5k6+y+v/hK4+svBenkqSXS3jruw6Kl+/3PQ6LdENJ7ZCH8xa4TAyjYxemmxjh96Kzoo4LuUKwfuZSyS/tky8NA==
+
 websocket-driver@>=0.5.1, websocket-driver@^0.7.4:
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/websocket-driver/-/websocket-driver-0.7.4.tgz#89ad5295bbf64b480abcba31e4953aca706f5760"
